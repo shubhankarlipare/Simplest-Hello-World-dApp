@@ -1,0 +1,67 @@
+<!-- Follow me on GitHub- https://github.com/shubhankarlipare -->
+<html>
+<head>
+	<title>Hello World dApp</title>
+
+<style>
+h1 {text-align: center;}
+h2 {text-align: center;}
+div {text-align: center;}
+</style>
+
+</head>
+<body>
+
+<h1><center>Hello World dApp</h1>
+
+<div><center>	
+	<button type="button" onClick="Greet()">Call String From Contract</button>
+</center></div>
+
+<h2 id= "greet"> Called string will appear HERE!! </h2>
+
+<!-- <script src="./node_modules/web3/dist/web3.min.js"></script> --> 
+
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+<script>
+	
+	var ContractAddress = "0x52544BCbbF118c709204B9Ee2684D9E93695bFbD"; //Paste your contract address here
+
+	var ContractAbi = [
+	{
+		"inputs": [],
+		"name": "Greet",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+] ; //Paste your ABI here
+
+		
+var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545')); //Initialize Web3
+
+var contract = new web3.eth.Contract(ContractAbi, ContractAddress); //Initialize contract
+
+function Greet() {
+
+	//call method from contract
+	contract.methods.Greet().call(
+		function(error, result){
+		document.getElementById("greet").innerHTML = result;			
+		}
+		);
+}
+
+</script>
+
+</body>
+</html>
+
+<!-- Follow me on GitHub- https://github.com/shubhankarlipare -->
